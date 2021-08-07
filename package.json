@@ -15,7 +15,8 @@
   "types": "./dist/xstate.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "build:demo": "vite build --mode demo"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.2.5",

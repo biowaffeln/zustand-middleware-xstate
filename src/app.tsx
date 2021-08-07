@@ -45,11 +45,21 @@ export const App: FC = () => {
   const isGreen = state.matches("green");
 
   return (
-    <>
-      <h1 className="text-center font-bold text-4xl my-10">
+    <div className="container mx-auto px-5 flex flex-col items-center">
+      <h1 className="text-center font-bold text-4xl mt-10">
         xstate-zustand-middleware demo
       </h1>
-      <div className="max-w-sm mx-auto flex justify-center space-x-10">
+      <p className="text-center text-xl mt-2">
+        check out the{" "}
+        <a
+          href="https://github.com/biowaffeln/zustand-middleware-xstate/blob/master/src/app.tsx"
+          className="text-blue-600 underline"
+        >
+          source code
+        </a>{" "}
+        for this example
+      </p>
+      <div className="max-w-sm mt-16 flex justify-center space-x-10">
         <div
           className="bg-gray-800 w-32
                      rounded py-6 space-y-4 shadow-xl
@@ -62,7 +72,7 @@ export const App: FC = () => {
         <div className="w-32 py-6">
           <p className="text-gray-600 font-semibold">state</p>
           <p className="text-3xl leading-none">{state.value}</p>
-          <p className="text-gray-600 font-semibold mt-6">events </p>
+          <p className="text-gray-600 font-semibold mt-6">events</p>
           <div className="mt-2.5 space-y-2">
             <Button onClick={() => send("TIMER")}>timer</Button>
             <Button onClick={() => send("DISABLE")}>disable</Button>
@@ -70,7 +80,7 @@ export const App: FC = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -13,7 +13,7 @@ npm install zustand-middleware-xstate zustand xstate
 ```tsx
 import create from "zustand";
 import { createMachine } from "xstate";
-import xstate from "zstand-middleware-xstate";
+import xstate from "zustand-middleware-xstate";
 
 // create your machine
 const machine = createMachine({

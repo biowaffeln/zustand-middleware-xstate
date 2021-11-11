@@ -1,6 +1,6 @@
 # zustand-middleware-xstate
 
-This middleware allows you to easily put your [xstate](https://github.com/statelyai/xstate) state machines into a global [zustand](https://github.com/pmndrs/zustand) store.
+This middleware allows you to easily put your [XState](https://github.com/statelyai/xstate) state machines into a global [zustand](https://github.com/pmndrs/zustand) store.
 
 ## installation
 

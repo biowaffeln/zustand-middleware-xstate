@@ -1,5 +1,10 @@
 {
   "name": "zustand-middleware-xstate",
+  "description": "Zustand middleware for integrating with XState",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/biowaffeln/zustand-middleware-xstate"
+  },
   "license": "MIT",
   "version": "1.0.0",
   "files": [

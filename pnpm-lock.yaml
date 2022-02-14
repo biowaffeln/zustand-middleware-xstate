@@ -17,7 +17,7 @@ specifiers:
   typescript: ^4.3.2
   vite: ^2.4.4
   xstate: ^4.30.0
-  zustand: ^3.5.7
+  zustand: ^3.7.0
 
 devDependencies:
   '@rollup/plugin-typescript': 8.2.5_tslib@2.3.0+typescript@4.3.5
@@ -36,7 +36,7 @@ devDependencies:
   typescript: 4.3.5
   vite: 2.4.4
   xstate: 4.30.0
-  zustand: 3.5.7_react@17.0.2
+  zustand: 3.7.0_react@17.0.2
 
 packages:
 
@@ -1357,8 +1357,9 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /zustand/3.5.7_react@17.0.2:
-    resolution: {integrity: sha512-DlVFXJavIHyXTOGz6dB+8QHZsPyJcGJSEBtlp2Ivmd5SwtlCnhPo3L8LB6YRfAOJC2PbqzgoD8NMjk+y+vIF0g==}
+  /zustand/3.7.0_react@17.0.2:
+    resolution: {integrity: sha512-USzVzLGrvZ8VK1/sEsOAmeqa8N7D3OBdZskVaL7DL89Q4QLTYD053iIlZ5KDidyZ+Od80Dttin/f8ZulOLFFDQ==}
+    engines: {node: '>=12.7.0'}
     peerDependencies:
       react: '>=16.8'
     peerDependenciesMeta:

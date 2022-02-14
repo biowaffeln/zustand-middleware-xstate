@@ -1,11 +1,15 @@
-import { StateMachine, Interpreter, interpret } from "xstate";
+import { interpret } from "xstate";
+import type { StateMachine, Interpreter } from "xstate";
 import type { SetState } from "zustand";
 
 export type Store<M> = M extends StateMachine<
   infer Context,
   infer Schema,
   infer Event,
-  infer State
+  infer State,
+  infer _A,
+  infer _B,
+  infer _C
 >
   ? {
       state: Interpreter<Context, Schema, Event, State>["state"];
@@ -15,7 +19,7 @@ export type Store<M> = M extends StateMachine<
   : never;
 
 const xstate =
-  <M extends StateMachine<any, any, any, any>>(machine: M) =>
+  <M extends StateMachine<any, any, any, any, any, any, any>>(machine: M) =>
   (set: SetState<Store<M>>): Store<M> => {
     const service = interpret(machine)
       .onTransition((state) => {

@@ -1,6 +1,6 @@
 import { interpret } from "xstate";
 import type { StateMachine, Interpreter } from "xstate";
-import type { SetState } from "zustand";
+import type { StoreApi } from "zustand";
 
 export type Store<M> = M extends StateMachine<
   infer Context,
@@ -20,20 +20,20 @@ export type Store<M> = M extends StateMachine<
 
 const xstate =
   <M extends StateMachine<any, any, any, any, any, any, any>>(machine: M) =>
-  (set: SetState<Store<M>>): Store<M> => {
+  (set: StoreApi<Store<M>>["setState"]): Store<M> => {
     const service = interpret(machine)
       .onTransition((state) => {
         const initialStateChanged =
           state.changed === undefined && Object.keys(state.children).length;
 
         if (state.changed || initialStateChanged) {
-          set({ state });
+          set({ state } as Partial<Store<M>>);
         }
       })
       .start();
 
     return {
-      state: service.state,
+      state: service.getSnapshot(),
       send: service.send,
       service,
     } as Store<M>;

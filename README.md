@@ -35,3 +35,14 @@ const App = () => {
 ```
 
 Or check out the [demo](https://biowaffeln.github.io/zustand-middleware-xstate/) for a working example.
+
+## selectors
+
+You can also use zustand's selector feature to get slices of the state and avoid unnecessary re-renders. For example:
+
+```tsx
+const context = useStore(s => s.state.context);
+```
+
+This hook will only re-render when the context changes. See the [zustand docs](https://github.com/pmndrs/zustand#selecting-multiple-state-slices) for more details.
+

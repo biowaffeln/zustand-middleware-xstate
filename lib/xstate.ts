@@ -19,9 +19,9 @@ export type Store<M> = M extends StateMachine<
   : never;
 
 const xstate =
-  <M extends StateMachine<any, any, any, any, any, any, any>>(machine: M) =>
+  <M extends StateMachine<any, any, any, any, any, any, any>>(machine: M, interpreterOptions? : Record<any,any>) =>
   (set: StoreApi<Store<M>>["setState"]): Store<M> => {
-    const service = interpret(machine)
+    const service = interpret(machine, interpreterOptions)
       .onTransition((state) => {
         const initialStateChanged =
           state.changed === undefined && Object.keys(state.children).length;

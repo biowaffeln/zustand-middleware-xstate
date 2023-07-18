@@ -1,7 +1,7 @@
 import React, { ComponentProps, FC } from "react";
 import { createMachine } from "xstate";
 import xstate from "../lib/xstate";
-import create from "zustand";
+import { create } from "zustand";
 import cx from "classnames";
 
 type Context = {};

@@ -46,3 +46,6 @@ const context = useStore(s => s.state.context);
 
 This hook will only re-render when the context changes. See the [zustand docs](https://github.com/pmndrs/zustand#selecting-multiple-state-slices) for more details.
 
+## interpreter options
+
+You can hand over a second argument to `xstate` function (from this library). This is forwarded to the interpreter of xstate, thus, things like `devTools` can be enabled.

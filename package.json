@@ -41,7 +41,7 @@
     "typescript": "^4.3.2",
     "vite": "^2.4.4",
     "xstate": "4.30.0",
-    "zustand": "^4.1.4"
+    "zustand": "^4.3.9"
   },
   "peerDependencies": {
     "xstate": "^4.30.0",

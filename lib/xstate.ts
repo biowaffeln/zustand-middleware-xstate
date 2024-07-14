@@ -1,41 +1,27 @@
-import { interpret } from "xstate";
-import type { StateMachine, Interpreter } from "xstate";
+import { StateMachine, SnapshotFrom, EventFromLogic, createActor, Actor } from "xstate";
 import type { StoreApi } from "zustand";
 
-export type Store<M> = M extends StateMachine<
-  infer Context,
-  infer Schema,
-  infer Event,
-  infer State,
-  infer _A,
-  infer _B,
-  infer _C
->
-  ? {
-      state: Interpreter<Context, Schema, Event, State>["state"];
-      send: Interpreter<Context, Schema, Event, State>["send"];
-      service: Interpreter<Context, Schema, Event, State>;
-    }
-  : never;
+export type Store<M extends StateMachine<any, any, any, any, any, any, any, any, any, any, any>> = {
+  state: SnapshotFrom<M>;
+  send: (event: EventFromLogic<M>) => void;
+  actor: Actor<M>;
+};
 
 const xstate =
-  <M extends StateMachine<any, any, any, any, any, any, any>>(machine: M, interpreterOptions? : Record<any,any>) =>
+  <M extends StateMachine<any, any, any, any, any, any, any, any, any, any, any>>(
+    machine: M,
+    actorOptions?: Actor<M>["options"]
+  ) =>
   (set: StoreApi<Store<M>>["setState"]): Store<M> => {
-    const service = interpret(machine, interpreterOptions)
-      .onTransition((state) => {
-        const initialStateChanged =
-          state.changed === undefined && Object.keys(state.children).length;
-
-        if (state.changed || initialStateChanged) {
-          set({ state } as Partial<Store<M>>);
-        }
-      })
-      .start();
+    const actor = createActor(machine, actorOptions).start();
+    actor.subscribe((state) => {
+      set({ state });
+    });
 
     return {
-      state: service.getSnapshot(),
-      send: service.send,
-      service,
+      state: actor.getSnapshot(),
+      send: actor.send,
+      actor,
     } as Store<M>;
   };
 

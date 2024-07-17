@@ -12,11 +12,19 @@ npm install zustand-middleware-xstate zustand xstate
 
 ```tsx
 import create from "zustand";
-import { createMachine } from "xstate";
+import { setup } from "xstate";
 import xstate from "zustand-middleware-xstate";
 
+type Events = {
+  // ...
+};
+
 // create your machine
-const machine = createMachine({
+const machine = setup({
+  types: {
+    events: {} as Events,
+  },
+}).createMachine({
   id: "machine",
   states: {
     // ...
@@ -28,7 +36,7 @@ const useStore = create(xstate(machine));
 
 // use the store in your components
 const App = () => {
-  const { state, send, service } = useStore();
+  const { state, send, actor } = useStore();
 
   return <div>{state.value}</div>;
 };
@@ -41,11 +49,11 @@ Or check out the [demo](https://biowaffeln.github.io/zustand-middleware-xstate/)
 You can also use zustand's selector feature to get slices of the state and avoid unnecessary re-renders. For example:
 
 ```tsx
-const context = useStore(s => s.state.context);
+const context = useStore((s) => s.state.context);
 ```
 
 This hook will only re-render when the context changes. See the [zustand docs](https://github.com/pmndrs/zustand#selecting-multiple-state-slices) for more details.
 
-## interpreter options
+## actor options
 
-You can hand over a second argument to `xstate` function (from this library). This is forwarded to the interpreter of xstate, thus, things like `devTools` can be enabled.
+You can hand over a second argument to `xstate` function (from this library). This is forwarded to the actor of xstate, thus, things like `devTools` can be enabled.

@@ -1,19 +1,16 @@
 import React, { ComponentProps, FC } from "react";
-import { createMachine } from "xstate";
+import { setup } from "xstate";
 import xstate from "../lib/xstate";
 import { create } from "zustand";
 import cx from "classnames";
 
-type Context = {};
-
 type Events = { type: "TIMER" | "DISABLE" | "ENABLE" };
 
-type States = {
-  value: "red" | "redYellow" | "yellow" | "green" | "disabled";
-  context: Context;
-};
-
-const lightMachine = createMachine<Context, Events, States>({
+const lightMachine = setup({
+  types: {
+    events: {} as Events,
+  },
+}).createMachine({
   id: "light",
   initial: "green",
   states: {
@@ -74,9 +71,9 @@ export const App: FC = () => {
           <p className="text-3xl leading-none">{state.value}</p>
           <p className="text-gray-600 font-semibold mt-6">events</p>
           <div className="mt-2.5 space-y-2">
-            <Button onClick={() => send("TIMER")}>timer</Button>
-            <Button onClick={() => send("DISABLE")}>disable</Button>
-            <Button onClick={() => send("ENABLE")}>enable</Button>
+            <Button onClick={() => send({ type: "TIMER" })}>timer</Button>
+            <Button onClick={() => send({ type: "DISABLE" })}>disable</Button>
+            <Button onClick={() => send({ type: "ENABLE" })}>enable</Button>
           </div>
         </div>
       </div>

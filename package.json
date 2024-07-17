@@ -44,7 +44,7 @@
     "zustand": "^4.3.9"
   },
   "peerDependencies": {
-    "xstate": "^4.30.0",
+    "xstate": "^5.15.0",
     "zustand": "^4.1.4"
   }
 }

@@ -43,9 +43,7 @@ export const App: FC = () => {
 
   return (
     <div className="container mx-auto px-5 flex flex-col items-center">
-      <h1 className="text-center font-bold text-4xl mt-10">
-        xstate-zustand-middleware demo
-      </h1>
+      <h1 className="text-center font-bold text-4xl mt-10">xstate-zustand-middleware demo</h1>
       <p className="text-center text-xl mt-2">
         check out the{" "}
         <a

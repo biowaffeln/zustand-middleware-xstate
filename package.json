@@ -14,6 +14,7 @@
   "module": "./dist/xstate.es.js",
   "exports": {
     ".": {
+      "types": "./dist/xstate.d.ts",
       "import": "./dist/xstate.es.js",
       "require": "./dist/xstate.umd.js"
     }
